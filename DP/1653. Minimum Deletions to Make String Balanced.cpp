@@ -1,3 +1,4 @@
+// Greedy solution exists in greedy folder
 // problem link : https://leetcode.com/problems/minimum-deletions-to-make-string-balanced/description
 // time complexity : O(N);
 // space complexity : O(N);
