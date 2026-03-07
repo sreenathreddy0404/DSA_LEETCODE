@@ -44,3 +44,34 @@ public:
         return "Bob";
     }
 };
+
+
+//Approach 2 : better
+class Solution {
+public:
+    int n;
+    int dp[50001];
+    int solve(vector<int>& stones,int i){
+        if(i == n)return 0;
+        if(dp[i] != -1)return dp[i];
+
+        int res = INT_MIN;
+
+        int value = 0;
+        for(int j=i;j<n && j<i+3;j++){
+            value += stones[j];
+            res = max(res,value-solve(stones,j+1));
+        }
+        return dp[i] = res;
+    }
+    string stoneGameIII(vector<int>& stoneValue) {
+        n = stoneValue.size();
+        memset(dp,-1,sizeof(dp));
+        //alicescore-bobscore
+        int diff = solve(stoneValue,0);
+        cout<<diff;
+        if(diff == 0)return "Tie";
+        else if(diff>0)return "Alice";
+        return "Bob";
+    }
+};
