@@ -38,3 +38,33 @@ public:
         return res;
     }
 };
+
+//Second approach
+class Solution {
+public:
+    int reverse(int n){
+        int num = 0;
+        while(n > 0){
+            num = (num*10) + (n%10);
+            n = n/10;
+        }
+        return num;
+    }
+    int minMirrorPairDistance(vector<int>& nums) {
+        int n = nums.size();
+        unordered_map<int,int> mp;
+        int res = INT_MAX;
+
+        for(int i=0;i<n;i++){
+            if(mp.count(nums[i]) > 0){
+                res = min(res,i-mp[nums[i]]);
+            }
+
+            int rev = reverse(nums[i]);
+            mp[rev] = i;
+        }
+
+        if(res == INT_MAX)return -1;
+        return res;
+    }
+};
