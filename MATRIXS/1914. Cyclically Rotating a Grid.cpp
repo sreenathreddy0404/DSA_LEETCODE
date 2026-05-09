@@ -74,3 +74,71 @@ public:
         return grid;
     }
 };
+
+
+//Further Optimization
+
+class Solution {
+public:
+    vector<vector<int>> rotateGrid(vector<vector<int>>& grid, int K) {
+        int n = grid.size();
+        int m = grid[0].size();
+
+        for(int k=0;k<min(n/2,m/2);k++){
+            int row_st = k;
+            int row_end = n-k-1;
+            int col_st = k;
+            int col_end = m-k-1;
+            vector<int> helper;
+            //left to right
+            for(int j=col_st;j<=col_end;j++){
+                helper.push_back(grid[row_st][j]); 
+            }
+
+            //top to bottom
+            for(int i=row_st+1;i<=row_end;i++){
+                helper.push_back(grid[i][col_end]);
+            }
+
+            //right to left
+            for(int j=col_end-1;j>=col_st;j--){
+                helper.push_back(grid[row_end][j]);
+            }
+
+            //bottom to top
+            for(int i=row_end-1;i>=row_st+1;i--){
+                helper.push_back(grid[i][col_st]);
+            }
+
+            int sz = helper.size();
+            int ind = K%sz;
+
+            //left to right
+            for(int j=col_st;j<=col_end;j++){
+                grid[row_st][j] = helper[ind];
+                ind = (ind+1)%sz; 
+            }
+
+            //top to bottom
+            for(int i=row_st+1;i<=row_end;i++){
+                grid[i][col_end] = helper[ind];
+                ind = (ind+1)%sz; 
+            }
+
+            //right to left
+            for(int j=col_end-1;j>=col_st;j--){
+                grid[row_end][j] = helper[ind];
+                ind = (ind+1)%sz; 
+            }
+
+            //bottom to top
+            for(int i=row_end-1;i>=row_st+1;i--){
+                grid[i][col_st] = helper[ind];
+                ind = (ind+1)%sz; 
+            }
+        }
+        
+
+        return grid;
+    }
+};
