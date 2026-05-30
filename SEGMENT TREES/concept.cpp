@@ -39,7 +39,7 @@ class SegmentTree{
         if(mid<=idx){
             update(2*node+1, left, mid, idx, val);
         }else{
-            update(2*node+1, mid+1, right, idx, val);
+            update(2*node+2, mid+1, right, idx, val);
         }
         
         seg[node] = seg[2*node+1] + seg[2*node+2];
