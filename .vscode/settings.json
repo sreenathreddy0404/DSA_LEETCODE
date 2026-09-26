@@ -1,0 +1,11 @@
+{
+  "files.exclude": {
+    "**/*.exe": true,
+    "**/*.tmp": true,
+    "**/*.temp": true,
+    "**/*.bak": true,
+    "**/*.swp": true,
+    "**/*~": true,
+    "**/tempCodeRunnerFile.cpp": true
+  }
+}
